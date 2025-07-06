@@ -1,223 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rummy Grand - Play & Win</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Prediction Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    :root {
-      --orange: #e65100; /* Darker orange */
-      --white: #ffffff;
-      --text-dark: #111;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--orange);
-      color: var(--white);
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #0072ff, #00c6ff);
+      color: #fff;
       text-align: center;
-      padding: 40px 20px;
+      padding: 40px 20px 100px;
     }
 
-    header h1 {
-      font-size: 36px;
-      font-weight: 700;
-      margin-bottom: 20px;
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
     }
 
-    .logo img {
-      width: 250px;
-      max-width: 90%;
-      height: auto;
-      margin-bottom: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
+    #timer {
+      font-size: 18px;
+      color: #ffdb4d;
       margin-bottom: 30px;
     }
 
-    .buttons a {
-      padding: 14px 32px;
+    .btn {
+      display: block;
+      width: 90%;
+      max-width: 300px;
+      margin: 10px auto;
+      padding: 14px 20px;
+      font-size: 17px;
+      background-color: #ffffff;
+      color: #0072ff;
+      border: none;
       border-radius: 8px;
-      font-size: 16px;
-      font-weight: 600;
-      text-decoration: none;
+      cursor: pointer;
       transition: background 0.3s ease;
-    }
-
-    .btn-download {
-      background-color: var(--white);
-      color: var(--text-dark);
-    }
-
-    .btn-download:hover {
-      background-color: #f1f1f1;
-    }
-
-    .btn-register {
-      background-color: #b71c1c;
-      color: var(--white);
-    }
-
-    .btn-register:hover {
-      background-color: #900d0d;
-    }
-
-    .info-text {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 20px 25px;
-      border-radius: 12px;
-      margin: 30px auto;
-      max-width: 800px;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .bottom-images {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin: 30px 0;
-    }
-
-    .bottom-images img {
-      width: 350px;
-      max-width: 100%;
-      border-radius: 12px;
-      object-fit: cover;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-
-    .footer-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-
-    .footer-buttons a {
-      background: var(--white);
-      color: var(--text-dark);
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-weight: 600;
       text-decoration: none;
-      font-size: 14px;
-      transition: background 0.3s;
+      font-weight: bold;
     }
 
-    .footer-buttons a:hover {
-      background: #eeeeee;
+    .btn:hover {
+      background-color: #e6e6e6;
     }
 
-    footer {
-      font-size: 14px;
-      color: var(--white);
+    .btn:disabled {
+      background-color: #cccccc;
+      color: #999999;
+      cursor: not-allowed;
     }
 
-    /* Offer popup */
-    .offer-popup {
+    #support {
       position: fixed;
-      top: 20px;
+      bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      background: var(--white);
-      color: var(--text-dark);
-      padding: 15px 25px;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      z-index: 1000;
-      font-weight: 600;
-      animation: fadeIn 1s ease forwards;
-      display: none;
+      width: 90%;
+      max-width: 300px;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
-      to { opacity: 1; transform: translateX(-50%) translateY(0); }
-    }
-
-    @media (max-width: 600px) {
-      .buttons {
-        flex-direction: column;
-      }
-
-      .bottom-images {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .bottom-images img {
-        width: 90%;
+    @media screen and (max-width: 480px) {
+      .btn {
+        font-size: 16px;
+        padding: 12px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Offer Popup -->
-  <div class="offer-popup" id="offerPopup">
-    🎁 Special Offer: Get 50 Bonus on First Deposit!
+  <h1>🎯 Welcome to Prediction Zone</h1>
+  <div id="timer">⏳ Link expires in <span id="countdown">60</span>s</div>
+
+  <a id="btn3" class="btn" href="https://t.me/PAIDSURESHOTBOT?start=_tgr_rI2pY_IxYWE1" target="_blank">💸 Paid Sure Shot</a>
+  <a id="btn4" class="btn" href="https://t.me/PREDICTION2617BOT?start=_tgr_5gTAgg81Yzc1" target="_blank">🎯 Free Prediction Hack</a>
+
+  <div id="support">
+    <a id="btn5" class="btn" href="https://t.me/DTKINGSUPPORTBOT?start=_tgr_Rqv5-1M1ZmY1" target="_blank">🛠 Contact Support</a>
   </div>
-
-  <header>
-    <h1>Rummy Grand</h1>
-  </header>
-
-  <div class="logo">
-    <img src="https://i.postimg.cc/YqcscfFP/IMG-20250703-131715-761.jpg" alt="Rummy Grand Center Image">
-  </div>
-
-  <div class="buttons">
-    <a href="https://rummygrand.cc?from_gameid=12811195&channelCode=100000" class="btn-download">Download APK</a>
-    <a href="https://rummygrand.cc?from_gameid=12811195&channelCode=100000" class="btn-register">Register Now</a>
-  </div>
-
-  <div class="info-text">
-    <p><strong>Important Information:</strong></p>
-    <p>✅ Instant Withdraws available via UPI or Bank</p>
-    <p>✅ Fast Deposits, no delay</p>
-    <p>✅ 24x7 support for Withdraw or Deposit issues</p>
-    <p>✅ Only real users – no bots or fake matches</p>
-  </div>
-
-  <div class="bottom-images">
-    <img src="https://i.postimg.cc/28XvXv5K/hqdefault.jpg" alt="Promo 1">
-    <img src="https://i.postimg.cc/C59hbFFm/rummy-grand-apk-sign-up.webp" alt="Promo 2">
-  </div>
-
-  <div class="footer-buttons">
-    <a href="https://t.me/yourtelegram">Telegram</a>
-    <a href="https://yourwebsite.com/contact">Contact Us</a>
-    <a href="https://yourwebsite.com/help">Help</a>
-  </div>
-
-  <footer>
-    &copy; 2025 Rummy Grand. All rights reserved.
-  </footer>
 
   <script>
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('offerPopup').style.display = 'block';
-      }, 2000);
-    });
+    let timeLeft = 60;
+    const countdownEl = document.getElementById('countdown');
+    const timerEl = document.getElementById('timer');
+    const buttons = [btn3, btn4, btn5];
+
+    const countdown = setInterval(() => {
+      timeLeft--;
+      countdownEl.textContent = timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(countdown);
+        timerEl.textContent = "❌ Link Expired";
+        buttons.forEach(btn => btn.setAttribute('disabled', true));
+      }
+    }, 1000);
   </script>
 
 </body>
